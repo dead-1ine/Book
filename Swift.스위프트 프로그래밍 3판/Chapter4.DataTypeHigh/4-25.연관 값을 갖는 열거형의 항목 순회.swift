@@ -17,7 +17,8 @@ enum MainDish: CaseIterable {
 	case rice
 	
 	static var allCases: [MainDish] {
-		return PastaTaste.allCases.map(MainDish.pasta) + PizzaDough.allCases.reduce([]) { result, dough) -> [MainDish] in result + PizzaOTopping.allCases.map { (topping) -> MainDish in MainDish.pizza(dough: dough, topping: topping) }
+		return PastaTaste.allCases.map(MainDish.pasta) 
+			+ PizzaDough.allCases.reduce([]) { result, dough) -> [MainDish] in result + PizzaTopping.allCases.map { (topping) -> MainDish in MainDish.pizza(dough: dough, topping: topping) }
 			
 			+ [true, false].map(MainDish.chicken)
 			+ [MainDish.rice]
