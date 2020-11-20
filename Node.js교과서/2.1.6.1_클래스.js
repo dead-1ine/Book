@@ -6,6 +6,7 @@ Human.isHuman = function(human){
 	return human instanceof Human;
 }
 
+
 Human.prototype.breathe = function() {
 	alert('h-a-a-a-m');
 };
