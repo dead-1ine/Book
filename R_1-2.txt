@@ -1,0 +1,334 @@
+- 순열을 계산 : permutation()
+
+    `permutations(3,2, name)`
+
+- 중복을 허용 : repeats.allowed=T
+
+    `permutations(3,2,name,repeats.allowed=T)`
+
+- 행의 수를 셈 : nrow()
+
+    `nrow(permutations(3,2,repeats.allowed=T))`
+
+- 순서에 상관없는 조합에 대해 알아봄 : combinations()
+
+    `combinations(3,2,name)`
+
+    `combinations(3,2,name,repeats.allowed=T)`
+
+- 확률을 알아봄 : dbinom()
+
+    `dbinom(9, 10000, 0.0009)`
+
+- 조건에 대한 확률을 알아봄 : dgeom()
+
+    `dgeom(1:10, 0.2)`
+
+    1. 5번 시행하는 동안 성공확률을 알아봄
+
+    ```r
+    a <- dgeom(1:10, 0.2)
+    sum(a[1:5])
+    ```
+
+- 난수(랜덤값) 생성 : runif()
+
+    `runif(10)`: 랜덤값 10개 생성
+
+    1. 0부터 100사이의 난수 50개 생성
+
+        `runif(50, min=0, max=100)`
+
+- 정규분포 난수 생성 : rnorm()
+
+    `rnorm(10, mean=100, sd=15)`
+
+    1. 평균이 452이며, 표준편차가 80인 난수 100개 생성
+
+        `rnorm(100, mean=452, sd=80)`
+
+- 이항분포 난수 생성 : rbinom()
+
+    `rbinom(100, size=1, prob=0.5)`
+
+    1. 주사위 확률
+
+        `rbinom(100, size=1, prob=1/6)`
+
+    2. 위의 결과를 문자열로 변경
+
+    ```r
+    a <- rninom(
+    100, size=1, prob=1/6)
+    a[a==1] <- "성공"
+    a[a==0] <- "실패"
+    ```
+
+- 정규분포 난수 : dnorm()
+
+    `dnorm(15, mean=30, sd=7)`
+
+    1. 평균이 550, 표준편차가 80인 정규분포에서 확률변수 450의 확률
+
+        `dnorm(450, mean=550, sd=80)`
+
+- 이항분포 난수 : dbinom()
+    1. 동전을 100번 던져 490번 앞면이 나올 확률
+
+        `dbinom(490, size=1000, prob=0.5)`
+
+    2. 흡연률 25% 1,020명이 있는 대학에서 무작위로 50명을 뽑았을 때 흡연자 확률
+
+        `dbinom(50, size=1020, prob=0.25)`
+
+- 기하분포 난수 : dgeom()
+
+    `dgeom(3, prob=0.2)`
+
+- 기하분포 누적 난수 : pgeom()
+
+    `pgeom(3, prob=0.2)`
+
+- 확률밀도 난수 : pnorm()
+
+    `pnorm(235, mean=240, sd=80)`
+
+    1. 평균이 350, 표준편차가 75인 정규분포에서 200~370까지의 확률을 구함
+
+        `pnorm(370, mean=350, sd=75) - pnorm(200, mean=350, sd=75)`
+
+    2. 한줄로 나타내기 
+
+        `diff(pnorm(c(200, 370), mean=350, sd=75)`
+
+- 확률질량함수, 이항분포를 정규분포로 바꾸기 : pbinom()
+    1. 2000번 동전을 던져 앞면이 0부터 900번까지 나올 확률
+
+        `pbinom(900, size=2000, prob=0.5)`
+
+    2. 2000명 중 기혼율이 78%. 0~1550명 중 기혼일 확률
+
+        `pbinom(1550, size=2000, prob=0.78)`
+
+    3. 위와 같은 상황에서 300~1500명까지 뽑았을 경우 확률
+
+        `pbinom(1500, size=2000, prob=0.78) - pbinom(300, size=2000, prob=0.78)`
+
+    4. 한줄로 나타냄
+
+        `diff(pbinom(c(300, 1500), size=2000, prob=0.78)`
+
+---
+
+- x축(확률변수) 정의
+    1. X축에 쓰일 변수를 만듦(1단위로 100개)
+
+    `x <- seq(from=0, to=100, by=1)`
+
+    2. 확률변수에 대한 각각의 확률 값
+
+    `y <- dnorm(x, mean=50, sd=12)`
+
+- 확률질량함수
+
+    100번 베르누이 시행이며, 단일 확률은 50%인 이항분포 그래프를 그림
+
+    1. X축을 0~100까지 1단위로 값을 구해 X객체에 담음
+
+        `x <- seq(from=0, to=100, by=1)`
+
+    2. 확률변수에 의한 이항분포 확률(dbinom()함수를 이용해 이항분포일 때 확률 값을 구해 y객체에 담음
+
+        `y <- dbinom(x, size=100, prob=0.5)`
+
+- 밀도함수 구하기
+    1. 임의 데이터를 만듬
+
+        `data <- rnorm(300, mean=70, sd=20)`
+
+    2. 밀도함수를 만드는 객체 : density()
+
+        `Ddata <- density(data)`
+
+- A토익 학원의 토익점수 평균은 623점, 표준편차는 90
+    1. 모집단의 신뢰구간(5%~95%)의 확률변수 값을 구함
+
+        `CI <- qnorm(c(0.05, 0.95), mean=623, sd=90)`
+
+    2. 데이터확인
+
+        `head(Data, 3)`
+
+    3. 불필요한 데이터 삭제
+
+        `Data <- Data[-1]`
+
+    4. 모집단의 신뢰구간과 표본의 평균 비교
+
+        `mean(Data$point)`
+
+    5. 표준편차 살피기
+
+         `sd(Data$point)`
+
+- 회귀구하기 : lm()
+
+    `lm(mpg~hp, data=mtcars)`
+
+    lm(종속변수 ~ 독립변수, 데이터)
+
+    1. 절편과 기울기를 자동으로 계산
+
+        `LR <- lm(Total_pay~Work_hour, data=DF)`
+
+    2. 속성보기
+
+        `mode(LR)`
+
+- 라인 그리기 : abline()
+
+    `abline(LR, col="blue", lwd=2)`
+
+- 불러온 데이터의 값 확인하기
+
+    `DF$H` : 안타 수
+
+    `DF$HR` : 홈런 수
+
+- 상관관계 구하기 : cor()
+
+    `cor(DF$H, DF$HR)`
+
+- 구조 살피기 : str()
+
+    `str(mtcars)`
+
+    mtcars는 내장 데이터셋
+
+- 결정계수 보기 : summary()
+
+    `summary(Lm)`
+
+- Scientific Notation이 나오지 않음(결정계수) : option()
+
+    `options(scipen=999)`
+
+- 신뢰구간 보기 : confint()
+
+    `confint(Lm)`
+
+- 그래프 한번에 보기 : par()
+    1. 4개의 그래프
+
+        `par(mforw=c(2,2))`
+
+    2. 행 2, 열 1 그래프 보기
+
+        `par(mforw=c(2,1))`
+
+- 회귀계수 : lm()
+
+    `Lm.res1 <- lm(y1~x1, data=DF)`
+
+- 다중 선형 회귀 분석
+
+    `Lm <- lm(hp~cyl + wt, data=DF)`
+
+    1. 검증
+
+        `summary(Lm)`
+
+- 추정치 구하기 : predict()
+
+    `predict(Lm)`
+
+    1. 예측값 구하기
+
+        `NewTeam <- data.frame(TB=1600)`
+
+        `predict(Lm, newdata=NewTeam)`
+
+- 데이터프레임에 넣을 때 alias하기
+
+    `data.frame(team=DF$team, HR=DF$HR, fitteedHR=b)`
+
+- 데이터 읽을 때 조건 넣기
+
+    `DF <- read.csv("data', stringAsFactors=F, na="-")`
+
+- 문자열 변수를 실수형 변수로 바꿈 : as.numeric()
+
+    `DF$AVG <- as.numeric(DF$AVG)`
+
+- 상관관계 : cor()
+
+    `Cors <- car(DF$HR, DF[ ,:length(DF)], use="pairwise.complete.obs")`
+
+    1. cor와 같은 다변량을 취급하는 함수에서는 na.rm대신 use를 사용
+    2. pairwise.complete.obs : 상관계수가 계산되는 변수들만 대상으로 결측값이 있는 case를 제거한 상관계수 계산
+
+- Sort하기 : order()
+
+    `Cors <- Cors[,order(Cors)]`
+
+- 값이 0인 NA값 제거 : na.omit()
+
+    `DF$HR[DF$HR==0] <- NA`
+
+    `DF$AO[DF$AO==0] <- NA`
+
+    `DF <- na.omit(DF)`
+
+- 다중 회귀분석
+
+    `Lm <- lm(Temp~Ozone + Sola.R + Wind, data=airquality)`
+
+    `Lm <- lm(HR~RBI + XBH + TB + XR, data=DF)`
+
+- mtcars로 실습하기
+
+    ```r
+    > DF <- mtcars
+
+    > str(DF)
+
+    > Lm <- lm(mpg~wt, data=DF)
+
+    > summary(DF)
+
+    > b <- predict(Lm)
+    // 회귀모델에 값 넣어 추정치 구함
+
+    > Com <- data.frame(
+    mpg=DF$mpg, fittedMPG=b)
+
+    > NewCar <- data.frame(wt=6)
+
+    > predict(Lm, newdata=NewCar)
+
+    > NewCar2 <- data.frame(
+    wt=0.4)
+
+    > predict(Lm, newdata=NewCar2)
+    ```
+
+- diamonds로 캐럿에 따른 가격 예측
+
+    ```r
+    > library("ggplot2")
+
+    > DF <- diamonds
+
+    > head(DF, 3)
+    > str(DF)
+
+    > Lm <- lm(price-carat,
+    data=DF)
+
+    > summary(Lm)
+
+    > NewDiamond <- data.frame(
+    carat=c(10, 20))
+
+    > predict(Lm, newdata=NewDiamond)
+    ```
