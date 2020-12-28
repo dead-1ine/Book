@@ -1,0 +1,6 @@
+# OS Files #
+.DS_Store
+Icon
+
+# Package Files #
+*.class
