@@ -30,9 +30,8 @@ struct ContentView: View {
             
             Text("라인 수 제한과 \n 텍스트 정렬 기능입니다. \n 이건 안 보입니다.")
                 .lineLimit(2)
-                .multilineTextAlignment(.trailing)
-                .fixedSize()
-            
+                .multilineTextAlignment(.trailing )
+                .fixedSize()            
             (Text("자간과 기준선").kerning(8)
                 + Text(" 조정도 쉽게 가능합니다.").baselineOffset(8))
                 .font(.system(size: 16))
