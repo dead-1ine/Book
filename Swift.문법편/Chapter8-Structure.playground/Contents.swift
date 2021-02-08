@@ -1087,20 +1087,140 @@ let someCar: Vehicle = SUV()
 // 업 캐스팅: 객체 as 변환할 타입
 // 다운 캐스팅: as? (결과는 옵셔널 타입) as! (결과는 일반 타입)
 
+// ...
 
 
+// 타입 캐스팅은 앱 제작 과정에서 자주 사용된다.
 
 
+//MARK: - Any, AnyObject
+// 상속 관계에 있지 않아도 타입 캐스팅할 수 있다.
+// Any, AnyObject는 무엇이든 다 받아들일 수 있다.
+// 모든 클래스의 아버지
+
+// 모든 클래스의 인스턴스는 AnyObject 타입으로 선언된 함수나 메소드의 인자값으로 사용될 수 있으며, AnyObject 타입을 반환하는 함수나 메소드는 모든 종류의 클래스를 반환할 수 있다는 의미
+var allCar: AnyObject = Car()
+allCar = SUV()
+
+func move(_ param: AnyObject) -> AnyObject {
+    return param
+}
+move(Car())
+move(Vehicle())
 
 
+// 고정된 하나의 타입만을 저장할 수 있는 배열이나 딕셔너리, 집합에서도 AnyObject 타입을 사용하면 모든 클래스를 저장할 수 있다.
+var list = [AnyObject]()
+list.append(Vehicle())
+list.append(Car())
+list.append(SUV())
+
+// AnyObject 타입으로 선언된 값은 타입 캐스팅을 통해 구체적인 타입으로 변환할 수 있다.
+// ! 실제로 저장된 인스턴스 타입과 관계없는 타입으로 캐스팅하면 오류가 발생
+let obj: AnyObject = SUV()
+
+if let suv = obj as? SUV {
+    print("\(suv) 캐스팅이 성공하였습니다.")
+}
+
+// 클래스일 때만 정의할 수 있으며, 구조체이거나 열거형은 허용하지 않는다.
+
+// Any객체 역시 비슷한 범용 객체이지만, 클래스에 국한되지 않고 스위프트에서 제공하는 모든 타입을 허용하는 특성이 있다.
+// 어떤 종류에 상관없이 모든 타입의 객체를 저장할 수 있음 ( Any > AnyObject )
+var value: Any = "Sample String"
+value = 3
+value = false
+value = [1, 3, 5, 6, 7]
+value = {
+    print("함수가 실행")
+}
+
+// 함수의 인자값 또는 반환값이 Any타입이라면 객체의 종류에 상관없이 입력받을 수 있거나, 모든 종류의 객체를 반환할 수 있다.
+func name(_ param: Any) {
+    print("\(param)")
+}
+name(3) // Int
+name(false) // Bool
+name([1,3,4,5,6,6]) // Array
+name {
+    print(">>>")
+} // (Function)
+
+// 배열이나 딕셔너리, 집합에 모든 종류의 객체를 구분 없이 저장 가능
+var rows = [Any]()
+rows.append(3)
+rows.append(false)
+rows.append([1,3,4,56,6])
+rows.append {
+    print(">>>>")
+}
+
+// Any 타입은 단순히 보기에 매력적일 수 있으나, 실제로 사용하면 불편한 점이 많다.
+// Any 타입은 매우 극단적으로 추상화된 타입이라, 할당된 객체가 사용할 수 있는 프로퍼티나 메소드는 아예 제공되지 않는다.
+// Any라는 타입으로 정의하면 모든 값을 제한 없이 할당받을 수 있지만, 그 값을 이용하여서 할 수 있는 것은 거의 없다.
 
 
+//MARK: - 초기화 구문
+// 인스턴스를 생성해서 메모리 공간을 할당받은 다음 사용하는 것
+// 초기화 과정에서 가장 중요한 것은 저장 프로퍼티, 저장 프로퍼티는 인스턴스 생성 과정에서 초기화되어야 하며, 이를 위해서 반드시 초기값이 지정되어야 한다. 모든 저장 프로퍼티에 초기값이 지정되어 있다면 기본 초기화 구문을 사용하여 인스턴스를 생성할 수 있다.
+Resolution()
+Video()
+Location()
+SUV()
+Car()
+Vehicle()
 
+// 멤버 와이즈 초기화 구문
+// 구조체 내부에 선언된 모든 저장 프로퍼티를 일괄로 외부의 값으로 초기화
+Point(x: 10.5, y: 12.0)
 
+// 일부만을 위한 아래와 같은 구문은 제공되지 않는다. 따라서 일부 프로퍼티만 외부값으로 초기화하려면 원하는 매개변수 형태를 가진 초기화 구문을 직접 정의하여 사용해야 합니다.
+// Point(x: 10.5)
 
+// 이처럼, 기본 구문 이외의 형식으로 원하는 인자값을 전달하여 저장 프로퍼티를 초기화하려면 반드시 구조체나 클래스 내부에 그에 맞는 형태와 할 일을 미리 정의해 두어야 합니다. 이때 사용되는 것이 초기화 메소드.
 
+/*
+    # init 초기화 메소드
+        init(<매개변수> : <타입>, <매개변수> : <타입> , ...) {
+            1. 매개변수의 초기화
+            2. 인스턴스 생성 시 기타 처리할 내용
+        }
+ */
 
+// 초기화 메소드 정의 예시
+struct Resolution {
+    var width = 0
+    var height = 0
+    
+    // 초기화 메소드 : Width를 인자값을 받음
+    init(width: Int) {
+        self.width = width
+    }
+}
 
+class VideoMode {
+    
+    var resolution = Resolution(width: 2048)
+    var interlaced = false
+    var frameRate = 0.0
+    var name: String?
+    
+    // 초기화 메소드: interlaced, frameRate 두 개의 인자를 받음
+    init(interlaced: Bool, frameRate: Double) {
+        self.interlaced = interlaced
+        self.frameRate = frameRate
+    }
+}
+
+// 인스턴스 생성
+let resolution = Resolution.init(width: 4096)
+
+let videoMode = VideoMode.init(interlaced: true, frameRate: 40.0)
+
+// init메소드 생략 가능
+let resolution1 = Resolution(width: 4096)
+
+let videoMode1 = VideoMode(interlaced: true, frameRate: 40.0)
 
 
 
