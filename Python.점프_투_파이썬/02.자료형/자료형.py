@@ -33,3 +33,55 @@ a ** b # 81
 7 // 4 # 1
 
 
+# 02-2 문자열 자료형
+# 1. 큰따옴표(")로 양쪽 둘러싸기
+"Hello World"
+
+# 2. 작은따옴표(')로 양쪽 둘러싸기
+'Python is fun'
+
+# 3. 큰따옴표 3개
+"""Life is too short, You need python"""
+
+# 4. 작은따옴표 3개
+'''Life is too short, You need python'''
+
+# 문자열에 작은따옴표 포함시키기
+food = "Python's favorite food is perl"
+
+# 문자열에 큰따옴표 포함시키기
+say = '"Python is very easy." he says.'
+
+# \ 를 사용해서 작은따옴표, 큰따옴표 포함시키기
+food = 'Python\'s favorite food is perl'
+say = "\"Python is very easy.\" he says."
+
+# 1. 줄을 바꾸기 위한 이스케이프 코드 \n 삽입하기
+multiline = "Life is too short \n You need python"
+
+# 2. 연속된 따옴표 사용하기
+multiline = '''
+	Life is too short
+	You need python
+	'''
+
+multiline = """
+	Life is too short
+	You need python
+	"""
+
+
+## 문자열 연산하기 
+# 문자열 더해서 연결하기(Concatenation)
+head = "Python"
+tail = " is fun!"
+head + tail # 'Python is fun!'
+
+# 문자열 곱하기
+a = "python"
+a * 2 # 'pythonpython'
+
+# 문자열 곱하기 응용
+print("=" * 50)
+print("My Program")
+print("=" * 50)
