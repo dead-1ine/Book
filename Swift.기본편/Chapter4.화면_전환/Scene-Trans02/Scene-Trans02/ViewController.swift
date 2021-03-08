@@ -14,8 +14,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
     @IBAction func moveByNavi(_ sender: Any) {
+        // 두번째 뷰 컨트롤러 인스턴스를 가져온다.
         guard let uvc = self.storyboard?.instantiateViewController(withIdentifier: "SecondVC") else {
             return
         }

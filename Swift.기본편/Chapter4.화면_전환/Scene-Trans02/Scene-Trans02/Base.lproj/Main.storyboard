@@ -70,6 +70,14 @@
                                     <action selector="back:" destination="LVR-RQ-yW1" eventType="touchUpInside" id="Bb8-aW-Yqc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WR-VP-aeH">
+                                <rect key="frame" x="174" y="565" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="navi Back"/>
+                                <connections>
+                                    <action selector="naviBack:" destination="LVR-RQ-yW1" eventType="touchUpInside" id="d2t-f1-SvM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="B27-rS-Ldl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

@@ -13,4 +13,10 @@ class SecondViewController: UIViewController {
         // 이전화면으로 돌아가기
         self.presentingViewController?.dismiss(animated: true)
     }
+    
+    @IBAction func naviBack(_ sender: Any) {
+        // navigation 이전 화면으로 돌아가기
+        // _ (반환값이 없다는 것을 명시적으로 표시)
+        _ = self.navigationController?.popViewController(animated: true)
+    }
 }
