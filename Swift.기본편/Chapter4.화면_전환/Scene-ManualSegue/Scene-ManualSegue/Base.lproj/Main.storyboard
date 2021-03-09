@@ -29,15 +29,13 @@
                                 <state key="normal" title="wind"/>
                                 <connections>
                                     <action selector="wind:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Okw-wR-dhG"/>
+                                    <segue destination="ZLd-Ev-x04" kind="presentation" id="SL6-Ch-jSy"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <connections>
-                        <segue destination="ZLd-Ev-x04" kind="presentation" identifier="ManualWind" modalTransitionStyle="partialCurl" id="gkd-ih-nzJ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,6 +62,7 @@
                                 <state key="normal" title="UnWind"/>
                                 <connections>
                                     <action selector="wind:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S0b-aG-BNy"/>
+                                    <segue destination="jJv-70-wL3" kind="unwind" unwindAction="unwindToVC:" id="8vu-bW-dWt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -72,6 +71,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vua-ke-blo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="jJv-70-wL3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="863.768115942029" y="93.75"/>
         </scene>
