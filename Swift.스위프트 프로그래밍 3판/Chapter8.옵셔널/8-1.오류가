@@ -1,0 +1,3 @@
+var myName: String = "Yang"
+myName = nil // 오류
+
