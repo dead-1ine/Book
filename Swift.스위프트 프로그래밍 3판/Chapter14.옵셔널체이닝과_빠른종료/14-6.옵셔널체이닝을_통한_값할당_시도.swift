@@ -15,3 +15,6 @@ if let number: Int = roomNumber {
 } else {
     print("Can not find room number")
 }
+
+yagom.address?.building?.room?.number = 505
+print(yagom.address?.building?.room?.number)
