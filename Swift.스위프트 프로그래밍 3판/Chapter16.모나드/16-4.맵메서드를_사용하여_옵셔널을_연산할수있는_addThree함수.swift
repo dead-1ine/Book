@@ -2,5 +2,4 @@ func addThree(_ num: Int) -> Int {
     return num + 3
 }
 
-addThree(2)
-//addThree(Optional(2))
+Optional(2).map(addThree)   // Optional(5)
