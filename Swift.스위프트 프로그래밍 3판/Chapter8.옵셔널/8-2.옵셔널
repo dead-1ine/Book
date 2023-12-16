@@ -1,6 +1,0 @@
-var myName: String? = "Yang"
-print(myName) // Yang
-
-myName = nil
-
-print(myName)
